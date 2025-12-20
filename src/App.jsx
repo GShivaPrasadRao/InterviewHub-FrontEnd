@@ -46,7 +46,7 @@ export default function App() {
   const [showForm, setShowForm] = useState(true)
   const [typeCounts, setTypeCounts] = useState({})
   const [currentPage, setCurrentPage] = useState(1)
-  const [pageSize, setPageSize] = useState(5)
+  const [pageSize, setPageSize] = useState(10)
   const [searchTerm, setSearchTerm] = useState('')
 
   // API base URL (Vite env or fallback)
@@ -325,7 +325,7 @@ export default function App() {
 
           <Form.Group className="mb-3">
             <Form.Label className="fw-bold">Output</Form.Label>
-            <Form.Control as="textarea" id="output" value={form.output} onChange={handleChange} />
+            <ReactQuill theme="snow" value={form.output} onChange={handleQuillChange('output')} modules={quillModules} formats={quillFormats} />
           </Form.Group>
 
           <Form.Group className="mb-3">
