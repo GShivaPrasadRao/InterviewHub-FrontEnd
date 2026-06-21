@@ -4,9 +4,10 @@ import Logo from './assets/logo.svg'
 import ReactQuill from 'react-quill'
 import DOMPurify from 'dompurify'
 
+
 const typeLanguageMap = {
   'Front-End': ['HTML', 'CSS', 'JQuery', 'JavaScript', 'Ajax', 'Bootstrap', 'ReactJS'],
-  'Back-End': ['CoreJava','Servlet','Spring Boot', 'Hibernate', 'Spring Security', 'RESTful Web Services'],
+  'Back-End': ['CoreJava','Servlet','Spring Boot','Spring DataJPA', 'Hibernate', 'Spring Security', 'RESTful Web Services'],
   'Database': ['SQL', 'MySQL', 'PostgreSQL', 'MongoDB', 'Oracle'],
   'Architecture': ['Monolithic', 'Microservices'],
   'Unit Testing': ['JUnit', 'Mockito'],
@@ -245,7 +246,7 @@ export default function App() {
       <Container className="my-4">
         {activeTab === 'dashboard' && (
           <div className="mb-4">
-            <h4 className="text-secondary mb-3">Types Dashboard</h4>
+            <h4 className="text-secondary mb-3">Dashboard</h4>
             <Row xs={1} sm={2} md={4} className="g-3">
               {typeOptions.map((t) => (
                 <Col key={t}>
