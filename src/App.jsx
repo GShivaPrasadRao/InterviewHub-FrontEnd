@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { Container, Row, Col, Form, Button, Accordion, Modal, Spinner, Card, Navbar, Nav, Badge } from 'react-bootstrap'
 import Logo from './assets/logo.svg'
 import ReactQuill from 'react-quill'
@@ -20,7 +20,8 @@ const typeLanguageMap = {
   'IDE': ['Eclipse', 'IntelliJ', 'VS Code', 'STS'],
   'Operating Systems': ['Windows', 'Linux (CentOS)'],
   'PMTools': ['JIRA', 'Azure Boards'],
-  'Cloud': ['AWS', 'Microsoft Azure', 'VMware ESXi']
+  'Cloud': ['AWS', 'Microsoft Azure', 'VMware ESXi'],
+  'Programs': ['String', 'Arrays', 'Standard Programs']
 }
 
 const initialForm = {
@@ -33,6 +34,21 @@ const initialForm = {
   output: '',
   summary: ''
 }
+
+const quillModules = {
+  toolbar: [
+    [{ header: [1, 2, 3, false] }],
+    ['bold', 'italic', 'underline', 'strike'],
+    [{ color: [] }, { background: [] }],
+    ['blockquote', 'code-block'],
+    [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+    ['link', 'clean']
+  ]
+}
+
+const quillFormats = [
+  'header', 'bold', 'italic', 'underline', 'strike', 'color', 'background', 'blockquote', 'code-block', 'list', 'bullet', 'indent', 'link'
+]
 
 export default function App() {
   const [form, setForm] = useState(initialForm)
@@ -191,24 +207,9 @@ export default function App() {
       'Cloud': '☁️'
     }
 
-    const quillModules = {
-      toolbar: [
-        [{ header: [1, 2, 3, false] }],
-        ['bold', 'italic', 'underline', 'strike'],
-        [{ color: [] }, { background: [] }],
-        ['blockquote', 'code-block'],
-        [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
-        ['link', 'clean']
-      ]
-    }
-
-    const quillFormats = [
-      'header', 'bold', 'italic', 'underline', 'strike', 'color', 'background', 'blockquote', 'code-block', 'list', 'bullet', 'indent', 'link'
-    ]
-
-    const handleQuillChange = (field) => (value) => {
+    const handleQuillChange = useCallback((field) => (value) => {
       setForm((f) => ({ ...f, [field]: value }))
-    }
+    }, [])
 
   return (
     <>
